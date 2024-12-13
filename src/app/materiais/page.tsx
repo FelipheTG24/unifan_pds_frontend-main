@@ -81,12 +81,14 @@ export default function Material() {
   async function readMateriais() {
     try {
       const response = await api.get("/materiais");
-      if (Array.isArray(response.data)) {
-        setMateriais(response.data);
-      } else {
-        console.error("A resposta da API não é um array:", response.data);
-        setMateriais([]);
-      }
+      console.log(response.data)
+      setMateriais(Array.isArray(response.data) ? response.data : [])
+      // if (Array.isArray(response.data)) {
+      //   setMateriais(response.data);
+      // } else {
+      //   console.error("A resposta da API não é um array:", response.data);
+      //   setMateriais([]);
+      // }
     } catch (error) {
       console.error("Erro ao buscar materiais:", error);
       setMateriais([]);
